@@ -19,7 +19,6 @@ var cookies = null;
 
 function refreshCookies(){
   console.log('refreshing cookies');
-  return;
   var driver = new webdriver.Builder().
    withCapabilities(webdriver.Capabilities.chrome()).
    build();
@@ -78,13 +77,9 @@ app.get('/user/:rut', function(req, res){
   var rut = req.params.rut;
   var length = rut.length;
 
-  res.json([
-    {link: 'wwww.algo.cl', rol: 'RES2233223', fecha: '22/11/2012', caratulado: 'Caratulado Algo', tribunal: 'Tribunal de Santiago'},
-    {link: 'wwww.emol.cl', rol: 'RES256754', fecha: '02/07/2013', caratulado: 'Caratulado Otro', tribunal: 'Tribunal de Calama'}
-    ]);
-  // getData(rut.slice(0,length-1),rut.slice(length-1,length)).then(function(data){
-  //     res.json(data);
-  // });
+  getData(rut.slice(0,length-1),rut.slice(length-1,length)).then(function(data){
+      res.json(data);
+  });
 
 });
 
